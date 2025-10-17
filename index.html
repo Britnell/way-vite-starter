@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vite-wayy</title>
+    <script type="module" src="/src/main.ts"></script>
+    <script src="/way-inline.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div x-comp="counter" x-load>
+        <p>count is {x}</p>
+        <button @click="add()">+1</button>
+      </div>
+    </div>
+    <script>
+      way.comp("counter", () => {
+        const x = way.signal(0);
+        return { x, add: () => x.value++ };
+      });
+    </script>
+    <style>
+      [x-load] {
+        display: none;
+      }
+    </style>
+  </body>
+</html>
