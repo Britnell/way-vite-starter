@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>script-tag</title>
+    <script src="/way-inline.js"></script>
+    <script type="module" src="/way.min.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>way.js - Script tag demo</h1>
+      <p>This demo loads way.js via script tag, no npm or bundler needed</p>
+      <p>You can still write components inline or in script module</p>
+
+      <div class="comp" x-comp="counter">
+        <p>count is {x}</p>
+        <button @click="add()">+1</button>
+      </div>
+
+      <div class="comp" x-comp="countdown">
+        <p>Countdown! : {count}</p>
+        <button @click="restart()">restart</button>
+      </div>
+    </main>
+    <script>
+      way.comp("counter", () => {
+        const x = way.signal(0);
+        return {
+          x,
+          add: () => x.value++,
+        };
+      });
+    </script>
+  </body>
+</html>
